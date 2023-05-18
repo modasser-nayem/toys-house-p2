@@ -11,7 +11,7 @@ const InputGroup = ({ label, type, name, value, changeHandler, error }) => {
             {label}*
          </label>
          <input
-            className={`bg-gray-100 w-full px-5 py-4 outline-none rounded-md border-red-600 ${
+            className={`bg-gray-100 w-full px-5 py-3.5 outline-none rounded-md border-red-600 ${
                error ? "border " : "border-none"
             }`}
             id={name}
