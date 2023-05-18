@@ -7,7 +7,8 @@ export default {
             Lato: "'Lato', sans-serif",
          },
          colors: {
-            "vivid-blue": "#2874F0",
+            golden: "#BD8448",
+            goldenrod: "#BD8448",
          },
       },
    },

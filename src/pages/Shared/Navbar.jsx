@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../public/logo.png";
+import logo from "../../assets/logos/logo.png";
 import { MdOutlineLogin, MdLogout, MdClose } from "react-icons/md";
 import { FaBars, FaUser, FaUserEdit } from "react-icons/fa";
 import LazyLoad from "react-lazy-load";
@@ -38,7 +38,7 @@ const Navbar = () => {
    const [isOpen, setIsOpen] = useState(false);
    const { user, loading, logoutUser } = useContext(AuthContext);
    return (
-      <nav className="flex items-center sticky z-40 top-0 bg-vivid-blue h-[11vh]">
+      <nav className="flex border items-center bg-white/20 backdrop-blur-2xl z-40 top-0 w-full h-[11vh]">
          <div className="navbar cs-container">
             <div className="flex-1">
                <Link
@@ -50,19 +50,19 @@ const Navbar = () => {
                      src={logo}
                      alt="brand logo"
                   />
-                  <p className="text-3xl text-white font-bold">
-                     <span className="">Toys House</span>
+                  <p className="text-3xl font-bold">
+                     <span className="text-goldenrod">Toys </span>House
                   </p>
                </Link>
             </div>
             <div
-               className={`bg-vivid-blue flex flex-col lg:flex-row items-center absolute lg:static lg:z-auto z-10 w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
+               className={`bg-white flex flex-col lg:flex-row items-center absolute lg:static lg:z-auto z-10 w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
                   isOpen
                      ? "bg-opacity-100 lg:bg-opacity-0 top-[11vh]"
                      : "-top-[700px]"
                }`}
             >
-               <div className="text-lg font-medium text-white font-Lato flex flex-col lg:flex-row items-center gap-8 lg:mr-7 mb-7 md:mb-0">
+               <div className="text-lg font-medium text-black font-Lato flex flex-col lg:flex-row items-center gap-8 lg:mr-7 mb-7 md:mb-0">
                   {navLink.map((nav, i) => {
                      if (!user) {
                         if (!nav.private) {
@@ -71,7 +71,7 @@ const Navbar = () => {
                                  key={i}
                                  to={nav.path}
                                  className={({ isActive }) =>
-                                    isActive ? "text-yellow-500" : ""
+                                    isActive ? "text-goldenrod" : ""
                                  }
                               >
                                  {nav.name}
@@ -84,7 +84,7 @@ const Navbar = () => {
                               key={i}
                               to={nav.path}
                               className={({ isActive }) =>
-                                 isActive ? "text-yellow-500" : ""
+                                 isActive ? "text-goldenrod" : ""
                               }
                            >
                               {nav.name}
@@ -143,13 +143,17 @@ const Navbar = () => {
                               </ul>
                            </div>
                         ) : (
-                           <Link
-                              className="tooltip tooltip-left text-white"
+                           <NavLink
+                              className={({ isActive }) =>
+                                 isActive
+                                    ? "text-goldenrod tooltip tooltip-left"
+                                    : "tooltip tooltip-left"
+                              }
                               data-tip="Login"
                               to="/login"
                            >
                               <MdOutlineLogin className="text-3xl" />
-                           </Link>
+                           </NavLink>
                         )}
                      </>
                   )}
@@ -157,7 +161,7 @@ const Navbar = () => {
             </div>
             <div className="lg:hidden">
                <button
-                  className="text-2xl text-white"
+                  className="text-2xl"
                   onClick={() => setIsOpen(!isOpen)}
                >
                   {isOpen ? <MdClose /> : <FaBars />}
