@@ -24,14 +24,31 @@ const AuthProvider = ({ children }) => {
       updateProfile(user, { displayName: name, photoURL: photo_url });
    };
 
+   const logoutUser = (toastMessage) => {
+      signOut(auth)
+         .then(() => {
+            if (toastMessage) {
+               toast.success(toastMessage);
+            }
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   };
+
+   useEffect(() => {
+      setLoading(true);
+      const unsubscribe = onAuthStateChanged(auth, (ObserverUser) => {
+         setUser(ObserverUser);
+         setLoading(false);
+      });
+      return () => unsubscribe();
+   }, []);
+
    const info = {
-      // user: {
-      //    displayName: "Nayem",
-      //    email: "alimodasser@gmail.com",
-      //    photoURL: "sssssssffffffffffff",
-      // },
       createNewUser,
       updateUserProfile,
+      logoutUser,
       user,
       loading,
    };

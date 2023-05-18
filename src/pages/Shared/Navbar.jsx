@@ -1,12 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/logo.png";
-import {
-   MdOutlineShoppingCart,
-   MdOutlineLogin,
-   MdLogout,
-   MdClose,
-} from "react-icons/md";
+import { MdOutlineLogin, MdLogout, MdClose } from "react-icons/md";
 import { FaBars, FaUser, FaUserEdit } from "react-icons/fa";
 import LazyLoad from "react-lazy-load";
 import { AuthContext } from "../../provider/AuthProvider";
@@ -41,7 +36,7 @@ const navLink = [
 
 const Navbar = () => {
    const [isOpen, setIsOpen] = useState(false);
-   const { user, loading } = useContext(AuthContext);
+   const { user, loading, logoutUser } = useContext(AuthContext);
    return (
       <nav className="flex items-center sticky z-40 top-0 bg-vivid-blue h-[11vh]">
          <div className="navbar cs-container">
@@ -138,7 +133,10 @@ const Navbar = () => {
                                     </Link>
                                  </li>
                                  <li>
-                                    <p className="text-lg">
+                                    <p
+                                       onClick={() => logoutUser("Logout User")}
+                                       className="text-lg"
+                                    >
                                        <MdLogout /> Logout
                                     </p>
                                  </li>
