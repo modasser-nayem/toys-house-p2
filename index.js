@@ -71,10 +71,7 @@ async function run() {
       // category to find data
       app.get("/toys", async (req, res) => {
          const categoryQuery = req.query.category;
-         let databaseQuery = {};
-         if (categoryQuery) {
-            databaseQuery = { category: categoryQuery };
-         }
+         let databaseQuery = { category: categoryQuery };
          const options = {
             projection: { _id: 1, picture: 1, name: 1, price: 1, rating: 1 },
          };
