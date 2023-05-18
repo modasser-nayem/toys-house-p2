@@ -122,6 +122,28 @@ async function run() {
          }
       });
 
+      // update toy
+      app.put("/toy/:id", async (req, res) => {
+         const id = req.params.id;
+         const updatedData = req.body;
+         const query = { _id: new ObjectId(id) };
+         const updateDoc = {
+            $set: { updatedData },
+         };
+         const result = await toysCollection.updateOne(query, updateDoc);
+         if (result.modifiedCount) {
+            res.status(201).send({
+               success: true,
+               message: "Successfully Updated toy",
+            });
+         } else {
+            res.status(400).send({
+               success: false,
+               error: "Failed to Update!!!",
+            });
+         }
+      });
+
       //<|---------------- Routes End ------------------|>//
    } catch {
       console.log("Mongodb error");
