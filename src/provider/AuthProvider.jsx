@@ -1,5 +1,13 @@
 import React, { createContext, useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+   createUserWithEmailAndPassword,
+   onAuthStateChanged,
+   signInWithEmailAndPassword,
+   signInWithPopup,
+   signOut,
+   updateProfile,
+} from "firebase/auth";
+import { toast } from "react-hot-toast";
 
 export const AuthContext = createContext();
 
@@ -22,6 +30,16 @@ const AuthProvider = ({ children }) => {
 
    const updateUserProfile = (user, name, photo_url) => {
       updateProfile(user, { displayName: name, photoURL: photo_url });
+   };
+
+   const loginCreatedUser = (email, password) => {
+      setLoading(true);
+      return signInWithEmailAndPassword(auth, email, password);
+   };
+
+   const loginWithGoogle = () => {
+      setLoading(true);
+      return signInWithPopup(auth, googleProvider);
    };
 
    const logoutUser = (toastMessage) => {
@@ -49,6 +67,8 @@ const AuthProvider = ({ children }) => {
       createNewUser,
       updateUserProfile,
       logoutUser,
+      loginCreatedUser,
+      loginWithGoogle,
       user,
       loading,
    };
