@@ -7,6 +7,7 @@ import AddToy from "../pages/AddToy/AddToy";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import Blog from "../pages/Blog/Blog";
+import Error from "../pages/Error/Error";
 
 export const router = createBrowserRouter([
    {

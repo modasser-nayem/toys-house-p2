@@ -10,7 +10,7 @@
       @apply text-5xl text-center font-bold font-Lato;
    }
    .cs-btn {
-      @apply py-2.5 px-5 text-xl text-white bg-blue-400 rounded-md hover:bg-blue-600 outline-none border-none;
+      @apply py-2.5 px-5 text-xl text-white bg-blue-500 rounded-md hover:bg-blue-600 outline-none border-none;
    }
    .cs-login-btn {
       @apply w-full flex gap-2 items-center justify-center py-4 px-5 text-xl font-medium cursor-pointer outline-none border-none rounded-md bg-gray-100;
