@@ -9,6 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// root route
+app.get("/", (req, res) => {
+   res.send(`<h1>Toys House is Running...</h1>`);
+});
+
 //---------------------------------------------
 //                Mongodb Start
 //---------------------------------------------
@@ -36,8 +41,24 @@ async function run() {
       const toysCollection = client.db("toys-house").collection("toys");
 
       //<|---------------- Routes Start ------------------|>//
-      app.get("/toys", async (req, res) => {
+      app.get("/all-toys", async (req, res) => {
          const result = await toysCollection.find().toArray();
+         res.send(result);
+      });
+
+      // category to find data
+      app.get("/toys", async (req, res) => {
+         const categoryQuery = req.query.category;
+         let databaseQuery = {};
+         if (categoryQuery) {
+            databaseQuery = { category: categoryQuery };
+         }
+         const options = {
+            projection: { _id: 1, picture: 1, name: 1, price: 1, rating: 1 },
+         };
+         const result = await toysCollection
+            .find(databaseQuery, options)
+            .toArray();
          res.send(result);
       });
       //<|---------------- Routes End ------------------|>//
@@ -49,11 +70,6 @@ run().catch(console.dir);
 // --------------------------------------------
 //                Mongodb End
 //---------------------------------------------
-
-// root route
-app.get("/", (req, res) => {
-   res.send(`<h1>Toys House is Running...</h1>`);
-});
 
 // Listen Server
 const port = process.env.PORT || 5000;
