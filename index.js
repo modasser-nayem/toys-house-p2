@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
 
 const app = express();
@@ -41,8 +41,23 @@ async function run() {
       const toysCollection = client.db("toys-house").collection("toys");
 
       //<|---------------- Routes Start ------------------|>//
+      // all toy data
       app.get("/all-toys", async (req, res) => {
-         const result = await toysCollection.find().toArray();
+         const options = {
+            projection: {
+               _id: 1,
+               picture: 1,
+               name: 1,
+               price: 1,
+               seller_name: 1,
+               category: 1,
+               quantity: 1,
+            },
+         };
+         const result = await toysCollection
+            .find({}, options)
+            .limit(5)
+            .toArray();
          res.send(result);
       });
 
@@ -59,6 +74,14 @@ async function run() {
          const result = await toysCollection
             .find(databaseQuery, options)
             .toArray();
+         res.send(result);
+      });
+
+      // specific toy details
+      app.get("/toys/:id", async (req, res) => {
+         const id = req.params.id;
+         const query = { _id: new ObjectId(id) };
+         const result = await toysCollection.findOne(query);
          res.send(result);
       });
       //<|---------------- Routes End ------------------|>//
