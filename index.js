@@ -77,13 +77,51 @@ async function run() {
          res.send(result);
       });
 
+      // my toys
+      app.get("/my-toys", async (req, res) => {
+         const routeQuery = req.query.email;
+         if (routeQuery) {
+            const databaseQuery = { seller_email: routeQuery };
+            const options = {
+               projection: { _id: 1, picture: 1, name: 1, price: 1, rating: 1 },
+            };
+            const result = await toysCollection
+               .find(databaseQuery, options)
+               .toArray();
+            res.send(result);
+         } else {
+            res.status(400).send({
+               success: false,
+               error: "email query not send",
+            });
+         }
+      });
+
       // specific toy details
-      app.get("/toys/:id", async (req, res) => {
+      app.get("/toy/:id", async (req, res) => {
          const id = req.params.id;
          const query = { _id: new ObjectId(id) };
          const result = await toysCollection.findOne(query);
          res.send(result);
       });
+
+      // Create  a toy
+      app.post("/toy", async (req, res) => {
+         const data = req.body;
+         const result = await toysCollection.insertOne(data);
+         if (result.acknowledged) {
+            res.status(201).send({
+               success: true,
+               message: "Toy Created Successfully",
+            });
+         } else {
+            res.status(400).send({
+               success: false,
+               error: "Toy Created Failed!!!",
+            });
+         }
+      });
+
       //<|---------------- Routes End ------------------|>//
    } catch {
       console.log("Mongodb error");
