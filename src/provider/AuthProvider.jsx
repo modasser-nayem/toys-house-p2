@@ -7,7 +7,13 @@ const AuthProvider = ({ children }) => {
    const [loading, setLoading] = useState(false);
 
    const info = {
-      user: { displayName: "Nayem" },
+      // user: {
+      //    displayName: "Nayem",
+      //    email: "alimodasser@gmail.com",
+      //    photoURL: "sssssssffffffffffff",
+      // },
+      user,
+      loading,
    };
    return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };
