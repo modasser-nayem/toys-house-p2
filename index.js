@@ -144,6 +144,24 @@ async function run() {
          }
       });
 
+      // Delete toy
+      app.delete("/toy/:id", async (req, res) => {
+         const id = req.params.id;
+         const query = { _id: new ObjectId(id) };
+         const result = await toysCollection.deleteOne(query);
+         if (result.deletedCount === 1) {
+            res.status(200).send({
+               success: true,
+               message: "Successfully deleted toy",
+            });
+         } else {
+            res.status(400).send({
+               success: false,
+               error: "Failed deleted!!!",
+            });
+         }
+      });
+
       //<|---------------- Routes End ------------------|>//
    } catch {
       console.log("Mongodb error");
