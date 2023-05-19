@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import {
+   GoogleAuthProvider,
    createUserWithEmailAndPassword,
    onAuthStateChanged,
    signInWithEmailAndPassword,
@@ -14,9 +15,12 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
    const [user, setUser] = useState(null);
-   const [loading, setLoading] = useState(false);
+   const [loading, setLoading] = useState(true);
+   console.log(user);
+   console.log(loading);
 
    const createNewUser = (email, password, name, photo_url, navigate) => {
+      setLoading(true);
       createUserWithEmailAndPassword(auth, email, password)
          .then((userCredentials) => {
             updateUserProfile(userCredentials.user, name, photo_url);
@@ -30,6 +34,7 @@ const AuthProvider = ({ children }) => {
    };
 
    const updateUserProfile = (user, name, photo_url) => {
+      setLoading(true);
       updateProfile(user, { displayName: name, photoURL: photo_url });
    };
 
@@ -40,10 +45,12 @@ const AuthProvider = ({ children }) => {
 
    const loginWithGoogle = () => {
       setLoading(true);
+      const googleProvider = new GoogleAuthProvider();
       return signInWithPopup(auth, googleProvider);
    };
 
    const logoutUser = (toastMessage) => {
+      setLoading(true);
       signOut(auth)
          .then(() => {
             if (toastMessage) {
@@ -70,7 +77,7 @@ const AuthProvider = ({ children }) => {
       logoutUser,
       loginCreatedUser,
       loginWithGoogle,
-      user: { displayName: "nayem", email: "nayem@gmail.com" },
+      user,
       loading,
    };
    return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;

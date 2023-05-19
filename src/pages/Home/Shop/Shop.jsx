@@ -10,7 +10,6 @@ const Shop = () => {
       fetch(`${server}/toys?category=Marvel`)
          .then((res) => res.json())
          .then((data) => {
-            console.log(data);
             setToys(data);
          });
    }, []);

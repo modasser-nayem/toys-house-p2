@@ -12,7 +12,7 @@ const AllToys = () => {
          });
    }, []);
    return (
-      <div className="cs-container">
+      <div className="cs-container py-16">
          <div className="bg-white shadow-lg rounded-sm border border-gray-200">
             <header className="px-5 py-4 border-b border-gray-100">
                <h2 className="font-semibold text-gray-800">Members</h2>

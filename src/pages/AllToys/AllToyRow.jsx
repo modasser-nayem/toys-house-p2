@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 
 const AllToyRow = ({ toy }) => {
    const { category, name, picture, price, quantity, seller_name, _id } = toy;
-   //    const deleteUser = (id) => {
-   //       console.log(id);
-   //    };
-   console.log(toy);
    return (
       <tr>
          <td className="p-2 whitespace-nowrap">

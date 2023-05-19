@@ -38,7 +38,7 @@ const Navbar = () => {
    const [isOpen, setIsOpen] = useState(false);
    const { user, loading, logoutUser } = useContext(AuthContext);
    return (
-      <nav className="flex border items-center bg-white/20 backdrop-blur-2xl z-40 top-0 w-full h-[11vh]">
+      <nav className="flex z-50 fixed items-center bg-white/30 backdrop-blur-2xl top-0 w-full h-[11vh]">
          <div className="navbar cs-container">
             <div className="flex-1">
                <Link
@@ -56,7 +56,7 @@ const Navbar = () => {
                </Link>
             </div>
             <div
-               className={`bg-white flex flex-col lg:flex-row items-center absolute lg:static lg:z-auto z-10 w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
+               className={`bg-blue-400 flex flex-col lg:flex-row items-center absolute lg:static -z-auto lg:-z-[-40] w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
                   isOpen
                      ? "bg-opacity-100 lg:bg-opacity-0 top-[11vh]"
                      : "-top-[700px]"
