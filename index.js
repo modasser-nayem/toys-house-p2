@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 
 const corsConfig = {
-   origin: "",
+   origin: "*",
    credentials: true,
    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 };
@@ -92,7 +92,12 @@ async function run() {
             const result = await toysCollection
                .find(databaseQuery, options)
                .toArray();
-            res.send(result);
+
+            if (result) {
+               return res.send(result);
+            } else {
+               res.send(null);
+            }
          } else {
             res.status(400).send({
                success: false,
