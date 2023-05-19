@@ -40,7 +40,7 @@ const AllToyRow = ({ toy }) => {
             <div className="text-center font-medium">
                <Link
                   className="btn btn-sm btn-ghost"
-                  to={`/toy/${_id}`}
+                  to={`/toy-details/${_id}`}
                >
                   Details
                </Link>

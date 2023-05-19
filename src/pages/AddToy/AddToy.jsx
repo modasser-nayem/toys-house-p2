@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import InputGroup from "../Shared/InputGroup";
 import { MdError } from "react-icons/md";
+import { server } from "../../main";
+import { toast } from "react-hot-toast";
 
 const AddToy = () => {
    const { user } = useContext(AuthContext);
@@ -15,7 +17,8 @@ const AddToy = () => {
       quantity: "",
       seller_name: user.displayName,
       seller_email: user.email,
-      description: "",
+      description:
+         "Unleash the power of the Hulk with this action figure. Featuring incredible strength and rage, the Hulk is ready to join your Avengers collection. With its massive size and impressive detailing, this figure is perfect for display or engaging in action-packed play",
       nameError: "",
       pictureError: "",
       priceError: "",
@@ -102,28 +105,39 @@ const AddToy = () => {
             description: addToy.description,
          };
          console.log(newToy);
-
-         setAddToy({
-            name: "",
-            picture: "",
-            price: "",
-            rating: "",
-            category: "",
-            quantity: "",
-            seller_name: "",
-            seller_email: "",
-            description:
-               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt optio, laudantium ea repellat tenetur animi voluptatem nostrum nisi porro, commodi quaerat quisquam repellendus quod maxime consequuntur quibusdam soluta! Dolorum harum magnam",
-            nameError: "",
-            pictureError: "",
-            priceError: "",
-            ratingError: "",
-            categoryError: "",
-            quantityError: "",
-            seller_nameError: "",
-            seller_emailError: "",
-            descriptionError: "",
-         });
+         fetch(`${server}/toy`, {
+            method: "POST",
+            headers: {
+               "content-type": "application/json",
+            },
+            body: JSON.stringify(newToy),
+         })
+            .then((res) => res.json())
+            .then((data) => {
+               if (data.success) {
+                  toast.success(data.message);
+                  setAddToy({
+                     ...addToy,
+                     name: "",
+                     picture: "",
+                     price: "",
+                     rating: "",
+                     category: "",
+                     quantity: "",
+                     nameError: "",
+                     pictureError: "",
+                     priceError: "",
+                     ratingError: "",
+                     categoryError: "",
+                     quantityError: "",
+                     seller_nameError: "",
+                     seller_emailError: "",
+                     descriptionError: "",
+                  });
+               } else {
+                  toast.error(data.error);
+               }
+            });
       }
    };
    return (
@@ -226,6 +240,7 @@ const AddToy = () => {
             <div className="text-xl font-medium mb-3 block">
                <label htmlFor="description">Description*</label>
                <textarea
+                  id="description"
                   name="description"
                   value={addToy.description}
                   onChange={changeHandler}

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import MyToyRow from "./MyToyRow";
 import { server } from "../../main";
 import { AuthContext } from "../../provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const MyToys = () => {
    const { user } = useContext(AuthContext);
@@ -17,7 +18,17 @@ const MyToys = () => {
    return (
       <div className="cs-container py-16">
          {!toys ? (
-            <div>You Don't have any Toy</div>
+            <div className="flex flex-col items-center justify-center">
+               <h2 className="text-4xl font-semibold text-center">
+                  You Don't have any Toy
+               </h2>
+               <Link
+                  to="/add-toy"
+                  className="cs-btn w-fit block my-5"
+               >
+                  Add Toy
+               </Link>
+            </div>
          ) : (
             <div className="bg-white shadow-lg rounded-sm border border-gray-200">
                <header className="px-5 py-4 border-b border-gray-100">
