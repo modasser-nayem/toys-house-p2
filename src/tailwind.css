@@ -15,4 +15,7 @@
    .cs-login-btn {
       @apply w-full flex gap-2 items-center justify-center py-4 px-5 text-xl font-medium cursor-pointer outline-none border-none rounded-md bg-gray-100;
    }
+   .react-tabs__tab--selected {
+      @apply bg-blue-500;
+   }
 }

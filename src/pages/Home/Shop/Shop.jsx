@@ -6,10 +6,8 @@ import ShopToyCart from "../../Shared/ShopToyCart";
 
 const Shop = () => {
    const [toys, setToys] = useState(null);
-   const [category, setCategory] = useState("Marvel");
-   console.log(toys);
    useEffect(() => {
-      fetch(`${server}/toys?category=${category}`)
+      fetch(`${server}/toys?category=Marvel`)
          .then((res) => res.json())
          .then((data) => {
             console.log(data);
@@ -30,7 +28,7 @@ const Shop = () => {
          <h2 className="cs-title">Shop</h2>
          <div>
             <Tabs>
-               <TabList>
+               <TabList className="mt-10 mb-7 w-fit mx-auto">
                   <Tab onClick={() => showData("Marvel")}>Marvel</Tab>
                   <Tab onClick={() => showData("Avengers")}>Avengers</Tab>
                   <Tab onClick={() => showData("Transformers")}>
@@ -41,7 +39,7 @@ const Shop = () => {
                {toys && (
                   <>
                      <TabPanel>
-                        <div className="grid grid-cols-3 gap-5">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                            {toys.map((toy) => (
                               <ShopToyCart
                                  key={toy._id}
@@ -51,20 +49,24 @@ const Shop = () => {
                         </div>
                      </TabPanel>
                      <TabPanel>
-                        {toys.map((toy) => (
-                           <ShopToyCart
-                              key={toy._id}
-                              toy={toy}
-                           />
-                        ))}
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                           {toys.map((toy) => (
+                              <ShopToyCart
+                                 key={toy._id}
+                                 toy={toy}
+                              />
+                           ))}
+                        </div>
                      </TabPanel>
                      <TabPanel>
-                        {toys.map((toy) => (
-                           <ShopToyCart
-                              key={toy._id}
-                              toy={toy}
-                           />
-                        ))}
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                           {toys.map((toy) => (
+                              <ShopToyCart
+                                 key={toy._id}
+                                 toy={toy}
+                              />
+                           ))}
+                        </div>
                      </TabPanel>
                   </>
                )}

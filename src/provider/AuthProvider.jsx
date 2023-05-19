@@ -70,7 +70,7 @@ const AuthProvider = ({ children }) => {
       logoutUser,
       loginCreatedUser,
       loginWithGoogle,
-      user,
+      user: { displayName: "nayem", email: "nayem@gmail.com" },
       loading,
    };
    return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
