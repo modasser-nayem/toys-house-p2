@@ -2,8 +2,8 @@ import React from "react";
 import { BsFillTrashFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const MyToyRow = ({ toy }) => {
-   const { category, name, picture, price, quantity, seller_name, _id } = toy;
+const MyToyRow = ({ toy, deleteToy }) => {
+   const { category, name, picture, price, quantity, _id } = toy;
    return (
       <tr>
          <td className="p-2 whitespace-nowrap">
@@ -52,7 +52,7 @@ const MyToyRow = ({ toy }) => {
                   Update
                </Link>
                <BsFillTrashFill
-                  onClick={() => deleteUser(_id)}
+                  onClick={() => deleteToy(_id)}
                   className="w-fit mx-auto text-xl hover:text-red-500 cursor-pointer"
                />
             </div>
@@ -60,5 +60,4 @@ const MyToyRow = ({ toy }) => {
       </tr>
    );
 };
-
 export default MyToyRow;

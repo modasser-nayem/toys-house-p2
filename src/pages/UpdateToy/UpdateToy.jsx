@@ -63,7 +63,6 @@ const UpdateToy = () => {
             quantity: updatedToy.quantity,
             description: updatedToy.description,
          };
-         console.log(newToy);
          fetch(`${server}/toy/${toy?._id}`, {
             method: "PATCH",
             headers: {
@@ -75,19 +74,15 @@ const UpdateToy = () => {
             .then((data) => {
                if (data.success) {
                   toast.success(data.message);
-                  console.log(data);
                   setUpdateToy({
                      ...updatedToy,
-                     price: "",
-                     quantity: "",
-                     description: "",
                      priceError: "",
                      quantityError: "",
                      descriptionError: "",
                   });
+                  navigate(`/my-toys`);
                } else {
                   toast.error(data.error);
-                  console.log(data);
                }
             });
       }

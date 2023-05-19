@@ -3,6 +3,8 @@ import MyToyRow from "./MyToyRow";
 import { server } from "../../main";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { toast } from "react-hot-toast";
 
 const MyToys = () => {
    const { user } = useContext(AuthContext);
@@ -11,10 +13,45 @@ const MyToys = () => {
       fetch(`${server}/my-toys?email=${user.email}`)
          .then((res) => res.json())
          .then((data) => {
-            console.log(data);
             setToys(data);
          });
    }, []);
+
+   const deleteToy = (id) => {
+      Swal.fire({
+         title: "Are you sure?",
+         text: "You won't be able to revert this!",
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+         if (result.isConfirmed) {
+            fetch(`${server}/toy/${id}`, {
+               method: "DELETE",
+               headers: {
+                  "content-type": "application/json",
+               },
+            })
+               .then((res) => res.json())
+               .then((data) => {
+                  if (data.success) {
+                     const remaining = toys.filter((toy) => toy._id !== id);
+                     setToys(remaining);
+                     Swal.fire(
+                        "Deleted!",
+                        "Your Toy has been deleted.",
+                        "success"
+                     );
+                  } else {
+                     toast.error(data.error);
+                  }
+               });
+         }
+      });
+   };
+
    return (
       <div className="cs-container py-16">
          {!toys ? (
@@ -70,6 +107,7 @@ const MyToys = () => {
                            {toys &&
                               toys.map((toy) => (
                                  <MyToyRow
+                                    deleteToy={deleteToy}
                                     key={toy._id}
                                     toy={toy}
                                  />
