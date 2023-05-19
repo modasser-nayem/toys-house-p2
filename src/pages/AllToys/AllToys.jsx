@@ -8,7 +8,6 @@ const AllToys = () => {
       fetch(`${server}/all-toys`)
          .then((res) => res.json())
          .then((data) => {
-            console.log(data);
             setToys(data);
          });
    }, []);
