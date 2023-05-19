@@ -26,9 +26,6 @@ const MyToyRow = ({ toy }) => {
             </div>
          </td>
          <td className="p-2 whitespace-nowrap">
-            <div className="text-left">{seller_name}</div>
-         </td>
-         <td className="p-2 whitespace-nowrap">
             <div className="text-left font-bold">${price}</div>
          </td>
          <td className="p-2 whitespace-nowrap">
@@ -37,7 +34,7 @@ const MyToyRow = ({ toy }) => {
             </div>
          </td>
          <td className="p-2 whitespace-nowrap">
-            <div className="text-left font-medium">
+            <div className="text-center font-medium">
                <Link
                   className="btn btn-sm btn-ghost"
                   to={`/toy-details/${_id}`}
@@ -48,7 +45,12 @@ const MyToyRow = ({ toy }) => {
          </td>
          <td className="p-2 whitespace-nowrap">
             <div className="text-lg text-center flex items-center gap-3">
-               <button className="btn btn-sm btn-info">Update</button>
+               <Link
+                  to={`/update-toy/${_id}`}
+                  className="btn btn-sm btn-info"
+               >
+                  Update
+               </Link>
                <BsFillTrashFill
                   onClick={() => deleteUser(_id)}
                   className="w-fit mx-auto text-xl hover:text-red-500 cursor-pointer"

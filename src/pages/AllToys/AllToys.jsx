@@ -23,27 +23,27 @@ const AllToys = () => {
                      <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                         <tr>
                            <th className="p-2 w-fit">
-                              <div className="font-semibold text-left">
+                              <div className="text-base font-semibold text-left">
                                  Product Name
                               </div>
                            </th>
                            <th className="p-2 whitespace-nowrap">
-                              <div className="font-semibold text-left">
+                              <div className="text-base font-semibold text-left">
                                  Seller
                               </div>
                            </th>
                            <th className="p-2 whitespace-nowrap">
-                              <div className="font-semibold text-left">
+                              <div className="text-base font-semibold text-left">
                                  Price
                               </div>
                            </th>
                            <th className="p-2 whitespace-nowrap">
-                              <div className="font-semibold text-center">
+                              <div className="text-base font-semibold text-center">
                                  Quantity
                               </div>
                            </th>
                            <th className="p-2 whitespace-nowrap">
-                              <div className="font-semibold text-center">
+                              <div className="text-base font-semibold text-center">
                                  Details
                               </div>
                            </th>

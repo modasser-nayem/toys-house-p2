@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import InputGroup from "../Shared/InputGroup";
 import { MdError } from "react-icons/md";
@@ -29,7 +28,6 @@ const AddToy = () => {
       seller_emailError: "",
       descriptionError: "",
    });
-   const navigate = useNavigate();
 
    const changeHandler = (e) => {
       setAddToy({

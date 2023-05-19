@@ -35,17 +35,17 @@ const questions = [
 
 const Blog = () => {
    return (
-      <div className="blogs cs-container py-8 mx-auto w-[90%] md:w-[800px]">
+      <div className="cs-container py-8 mx-auto w-[90%] md:w-[800px]">
          {questions.map((question) => (
             <div
                key={question.id}
                tabIndex={0}
-               className="collapse group collapse-arrow border border-base-300 rounded-box my-5"
+               className="collapse collapse-arrow border border-base-300 rounded-box my-5"
             >
-               <div className="collapse-title text-xl font-Montserrat font-bold bg-gray-200 group-focus:bg-yellow-cs group-focus:text-gray-700">
+               <div className="collapse-title text-xl font-bold bg-gray-200">
                   {question.question}
                </div>
-               <div className="collapse-content bg-gray-200 text-black group-focus:bg-yellow-cs group-focus:text-gray-700">
+               <div className="collapse-content bg-gray-200 text-black">
                   <p className="text-lg font-Lato">{question.answer}</p>
                </div>
             </div>
