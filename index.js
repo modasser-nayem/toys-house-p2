@@ -29,7 +29,7 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@clu
 const client = new MongoClient(uri, {
    serverApi: {
       version: ServerApiVersion.v1,
-      strict: true,
+      strict: false,
       deprecationErrors: true,
    },
 });
@@ -44,26 +44,64 @@ async function run() {
       );
 
       // collections
-      const userCollection = client.db("toys-house").collection("users");
       const toysCollection = client.db("toys-house").collection("toys");
+      toysCollection.createIndex({ name: "text" });
 
       //<|---------------- Routes Start ------------------|>//
       // all toy data
       app.get("/all-toys", async (req, res) => {
+         const searchText = req.query.search;
          const options = {
             projection: {
                _id: 1,
                picture: 1,
                name: 1,
                price: 1,
-               seller_name: 1,
-               category: 1,
                quantity: 1,
+               category: 1,
+               seller_name: 1,
+            },
+         };
+         if (!searchText) {
+            const result = await toysCollection
+               .find({}, options)
+               .limit(20)
+               .toArray();
+            res.send(result);
+         } else {
+            const result = await toysCollection
+               .find(
+                  {
+                     $text: {
+                        $search: `${searchText}`,
+                     },
+                  },
+                  options
+               )
+               .limit(20)
+               .toArray();
+            res.send(result);
+         }
+      });
+
+      // popular toys
+      app.get("/popular-toys", async (req, res) => {
+         const query = {
+            rating: { $gt: 4.5 },
+         };
+         const options = {
+            projection: {
+               _id: 1,
+               picture: 1,
+               price: 1,
+               name: 1,
+               rating: 1,
+               category: 1,
             },
          };
          const result = await toysCollection
-            .find({}, options)
-            .limit(5)
+            .find(query, options)
+            .limit(4)
             .toArray();
          res.send(result);
       });
@@ -83,20 +121,31 @@ async function run() {
 
       // my toys
       app.get("/my-toys", async (req, res) => {
-         const routeQuery = req.query.email;
-         if (routeQuery) {
-            const databaseQuery = { seller_email: routeQuery };
+         const emailQuery = req.query.email;
+         const sortingQuery = {
+            price: req.query.price === "highest" ? -1 : 1,
+         };
+         if (emailQuery) {
+            const databaseQuery = { seller_email: emailQuery };
             const options = {
-               projection: { _id: 1, picture: 1, name: 1, price: 1, rating: 1 },
+               projection: {
+                  _id: 1,
+                  picture: 1,
+                  name: 1,
+                  price: 1,
+                  rating: 1,
+                  category: 1,
+                  quantity: 1,
+               },
             };
             const result = await toysCollection
                .find(databaseQuery, options)
+               .sort(sortingQuery)
                .toArray();
-
-            if (result) {
+            if (result.length !== 0) {
                return res.send(result);
             } else {
-               res.send(null);
+               return res.send(null);
             }
          } else {
             res.status(400).send({
@@ -117,27 +166,40 @@ async function run() {
       // Create  a toy
       app.post("/toy", async (req, res) => {
          const data = req.body;
-         const result = await toysCollection.insertOne(data);
-         if (result.acknowledged) {
-            res.status(201).send({
-               success: true,
-               message: "Toy Created Successfully",
-            });
+         const query = { name: data.name };
+         const exist = await toysCollection.findOne(query);
+         if (!exist) {
+            const result = await toysCollection.insertOne(data);
+            if (result.acknowledged) {
+               res.status(201).send({
+                  success: true,
+                  message: "Toy Created Successfully",
+               });
+            } else {
+               res.status(400).send({
+                  success: false,
+                  error: "Toy Created Failed!!!",
+               });
+            }
          } else {
             res.status(400).send({
                success: false,
-               error: "Toy Created Failed!!!",
+               error: "Toy Already exist, add another toy",
             });
          }
       });
 
       // update toy
-      app.put("/toy/:id", async (req, res) => {
+      app.patch("/toy/:id", async (req, res) => {
          const id = req.params.id;
          const updatedData = req.body;
          const query = { _id: new ObjectId(id) };
          const updateDoc = {
-            $set: { updatedData },
+            $set: {
+               price: updatedData.price,
+               quantity: updatedData.quantity,
+               description: updatedData.description,
+            },
          };
          const result = await toysCollection.updateOne(query, updateDoc);
          if (result.modifiedCount) {
