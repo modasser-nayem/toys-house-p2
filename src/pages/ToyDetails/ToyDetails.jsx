@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { server } from "../../main";
 import { FaStarHalf } from "react-icons/fa";
+import useDynamicTitle from "../../utils/useDynamicTitle";
 
 const ToyDetails = () => {
+   useDynamicTitle("Toy Details");
    const { id } = useParams();
    const [toy, setToy] = useState(null);
    const {

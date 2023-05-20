@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+   useDynamicTitle("Login");
    const navigate = useNavigate();
    const location = useLocation();
    const fromRedirect = location.state?.from?.pathname || "/";
@@ -60,8 +61,8 @@ const Login = () => {
    const googleLogin = () => {
       loginWithGoogle()
          .then((result) => {
-            console.log(result);
             toast.success(user.success);
+            navigate(fromRedirect);
          })
          .catch((error) => {
             console.log(error);

@@ -5,17 +5,29 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { toast } from "react-hot-toast";
+import useDynamicTitle from "../../utils/useDynamicTitle";
 
 const MyToys = () => {
+   useDynamicTitle("My Toys");
    const { user } = useContext(AuthContext);
    const [toys, setToys] = useState(null);
+   const [priceRange, setPriceRange] = useState("highest");
    useEffect(() => {
-      fetch(`${server}/my-toys?email=${user.email}`)
+      fetch(`${server}/my-toys?email=${user.email}&price=${priceRange}`)
          .then((res) => res.json())
          .then((data) => {
             setToys(data);
          });
    }, []);
+
+   const handlePriceRange = (text) => {
+      setPriceRange(text);
+      fetch(`${server}/my-toys?email=${user.email}&price=${text}`)
+         .then((res) => res.json())
+         .then((data) => {
+            setToys(data);
+         });
+   };
 
    const deleteToy = (id) => {
       Swal.fire({
@@ -67,56 +79,82 @@ const MyToys = () => {
                </Link>
             </div>
          ) : (
-            <div className="bg-white shadow-lg rounded-sm border border-gray-200">
-               <header className="px-5 py-4 border-b border-gray-100">
-                  <h2 className="font-semibold text-gray-800">My Toys</h2>
-               </header>
-               <div className="p-3">
-                  <div className="overflow-x-auto">
-                     <table className="table-auto w-full">
-                        <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                           <tr>
-                              <th className="p-2 w-fit">
-                                 <div className="text-base font-semibold text-left">
-                                    Product Name
-                                 </div>
-                              </th>
-                              <th className="p-2 whitespace-nowrap">
-                                 <div className="text-base font-semibold text-left">
-                                    Price
-                                 </div>
-                              </th>
-                              <th className="p-2 whitespace-nowrap">
-                                 <div className="text-base font-semibold text-center">
-                                    Quantity
-                                 </div>
-                              </th>
-                              <th className="p-2 whitespace-nowrap">
-                                 <div className="text-base font-semibold text-center">
-                                    Details
-                                 </div>
-                              </th>
-                              <th className="p-2 whitespace-nowrap">
-                                 <div className="text-base font-semibold text-center">
-                                    Action
-                                 </div>
-                              </th>
-                           </tr>
-                        </thead>
-                        <tbody className="text-sm divide-y divide-gray-100">
-                           {toys &&
-                              toys.map((toy) => (
-                                 <MyToyRow
-                                    deleteToy={deleteToy}
-                                    key={toy._id}
-                                    toy={toy}
-                                 />
-                              ))}
-                        </tbody>
-                     </table>
+            <>
+               <div className="mx-auto w-fit mb-5">
+                  <div className="btn-group">
+                     <button
+                        onClick={() => handlePriceRange("highest")}
+                        className={`btn btn-outline border-goldenrod text-goldenrod hover:border-goldenrod ${
+                           priceRange === "highest"
+                              ? "bg-goldenrod text-white hover:bg-goldenrod"
+                              : ""
+                        }`}
+                     >
+                        High to low price
+                     </button>
+                     <button
+                        onClick={() => handlePriceRange("lowest")}
+                        className={`btn btn-outline border-goldenrod text-goldenrod hover:border-goldenrod ${
+                           priceRange === "lowest"
+                              ? "bg-goldenrod text-white hover:bg-goldenrod"
+                              : ""
+                        }`}
+                     >
+                        Low to high price
+                     </button>
                   </div>
                </div>
-            </div>
+               <div className="bg-white shadow-lg rounded-sm border border-gray-200">
+                  <header className="px-5 py-4 border-b border-gray-100">
+                     <h2 className="font-semibold text-gray-800">My Toys</h2>
+                  </header>
+                  <div className="p-3">
+                     <div className="overflow-x-auto">
+                        <table className="table-auto w-full">
+                           <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                              <tr>
+                                 <th className="p-2 w-fit">
+                                    <div className="text-base font-semibold text-left">
+                                       Product Name
+                                    </div>
+                                 </th>
+                                 <th className="p-2 whitespace-nowrap">
+                                    <div className="text-base font-semibold text-left">
+                                       Price
+                                    </div>
+                                 </th>
+                                 <th className="p-2 whitespace-nowrap">
+                                    <div className="text-base font-semibold text-center">
+                                       Quantity
+                                    </div>
+                                 </th>
+                                 <th className="p-2 whitespace-nowrap">
+                                    <div className="text-base font-semibold text-center">
+                                       Details
+                                    </div>
+                                 </th>
+                                 <th className="p-2 whitespace-nowrap">
+                                    <div className="text-base font-semibold text-center">
+                                       Action
+                                    </div>
+                                 </th>
+                              </tr>
+                           </thead>
+                           <tbody className="text-sm divide-y divide-gray-100">
+                              {toys &&
+                                 toys.map((toy) => (
+                                    <MyToyRow
+                                       deleteToy={deleteToy}
+                                       key={toy._id}
+                                       toy={toy}
+                                    />
+                                 ))}
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </>
          )}
       </div>
    );

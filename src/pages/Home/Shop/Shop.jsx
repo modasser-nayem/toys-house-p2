@@ -48,7 +48,7 @@ const Shop = () => {
                         </div>
                      </TabPanel>
                      <TabPanel>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
                            {toys.map((toy) => (
                               <ShopToyCart
                                  key={toy._id}

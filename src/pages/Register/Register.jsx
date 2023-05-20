@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import InputGroup from "../Shared/InputGroup";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import useDynamicTitle from "../../utils/useDynamicTitle";
 
 const Register = () => {
+   useDynamicTitle("Register");
    const [isAgree, setIsAgree] = useState(true);
    const [user, setUser] = useState({
       name: "",

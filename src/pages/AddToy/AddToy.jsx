@@ -4,8 +4,10 @@ import InputGroup from "../Shared/InputGroup";
 import { MdError } from "react-icons/md";
 import { server } from "../../main";
 import { toast } from "react-hot-toast";
+import useDynamicTitle from "../../utils/useDynamicTitle";
 
 const AddToy = () => {
+   useDynamicTitle("Add new toy");
    const { user } = useContext(AuthContext);
    const [addToy, setAddToy] = useState({
       name: "",

@@ -1,39 +1,37 @@
 import React from "react";
+import useDynamicTitle from "../../utils/useDynamicTitle";
 
 const questions = [
    {
       id: "1",
       question:
-         "Tell us the differences between uncontrolled and controlled components?",
+         "What is an access token and refresh token? How do they work and where should we store them on the client-side?",
       answer:
-         "In React, controlled components refer to components that have their state and behavior controlled by the parent component. These components rely on props passed down from the parent component to update their state and behavior. Uncontrolled components refer to components that manage their own state internally.",
+         "A refresh token is a special key that enables a client for an API or service to retrieve new access tokens without requiring the user to perform a complete login. In other words, an application can exchange a valid refresh token for a new access token. In addition to the new access token, the service may return a new refresh token too. Refresh tokens and access tokens serve very different purposes in the authorization process.",
    },
    {
       id: "2",
-      question: "How to validate React props using PropTypes?",
-      answer: `
-            1.PropTypes.any : The prop can be of any data type.
-            1.PropTypes.bool : The prop should be a Boolean.
-            3.PropTypes.number : The prop should be a number.
-            4.PropTypes.string : The prop should be a string.
-            5.PropTypes.func : The prop should be a function.
-            6.PropTypes.array : The prop should be an array.`,
+      question: "Compare SQL and NoSQL databases?",
+      answer:
+         "SQL databases are vertically scalable, while NoSQL databases are horizontally scalable. SQL databases are table-based, while NoSQL databases are document, key-value, graph, or wide-column stores. SQL databases are better for multi-row transactions, while NoSQL is better for unstructured data like documents or JSON.",
    },
    {
       id: "3",
-      question: "Tell us the difference between nodejs and express js?",
-      answer:
-         "js web application framework that provides a robust set of features for web and mobile applications. In other words, NodeJS is the package, which provides the JavaScript run-time environment, whereas Express is a framework that sits on top of NodeJS and helps us to handle requests and responses.",
+      question: "What is express js? What is Nest JS?",
+      answer: `1.Express is a Node.js web application framework that provides a wide range of functionality for constructing web and mobile applications. It is a layer built on top of Node that aids in the management of servers and routes.
+         
+         2.NestJS, on the other hand, is a newer framework that provides additional features such as dependency injection, a modular architecture, and an intuitive CLI.`,
    },
    {
       id: "4",
-      question: "What is a custom hook, and why will you create a custom hook?",
+      question: "What is MongoDB aggregate and how does it work?",
       answer:
-         "Custom React JS hooks offer reusability as when a custom hook is created, it can be reused easily, which makes the code cleaner and reduces the time to write the code. It also enhances the rendering speed of the code as a custom hook does not need to be rendered again and again while rendering the whole code.",
+         "Aggregation is a way of processing a large number of documents in a collection by means of passing them through different stages. The stages make up what is known as a pipeline. The stages in a pipeline can filter, sort, group, reshape and modify documents that pass through the pipeline.",
    },
 ];
 
 const Blog = () => {
+   useDynamicTitle("Blog");
    return (
       <div className="cs-container py-8 mx-auto w-[90%] md:w-[800px]">
          {questions.map((question) => (

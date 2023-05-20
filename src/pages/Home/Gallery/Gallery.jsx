@@ -3,30 +3,30 @@ import React from "react";
 const Gallery = () => {
    return (
       <div className="py-16">
-         <div className="grid grid-cols-3 gap-5">
-            <div className="h-[250px] overflow-hidden">
+         <div className="grid justify-center grid-cols-2 md:grid-cols-3 gap-5">
+            <div className="md:h-[250px] overflow-hidden">
                <img
-                  className="w-full h-full hover:scale-110 duration-500"
+                  className="w-full hover:scale-110 duration-500"
                   src="https://cdn.shopify.com/s/files/1/0698/7730/1541/files/IDT-HOME-TRIPLE-STARWARS_540x.jpg?v=1680085731"
                   alt=""
                />
             </div>
-            <div className="h-[250px] overflow-hidden">
+            <div className="md:h-[250px] overflow-hidden">
                <img
-                  className="w-full h-full hover:scale-110 duration-500"
+                  className="w-full hover:scale-110 duration-500"
                   src="https://cdn.shopify.com/s/files/1/0698/7730/1541/files/IDT-HOME-TRIPLE-TRANSFORMERS_540x.jpg?v=1680085731"
                   alt=""
                />
             </div>
-            <div className="h-[250px] overflow-hidden">
+            <div className="md:h-[250px] overflow-hidden">
                <img
-                  className="w-full h-full hover:scale-110 duration-500"
+                  className="w-full hover:scale-110 duration-500"
                   src="https://cdn.shopify.com/s/files/1/0698/7730/1541/files/IDT-HOME-TRIPLE-MARVEL_540x.jpg?v=1680085731"
                   alt=""
                />
             </div>
          </div>
-         <div className="grid grid-cols-4 gap-5 my-5">
+         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 my-5">
             <div className="h-[150px] overflow-hidden">
                <img
                   className="w-full h-full hover:scale-110 duration-500"

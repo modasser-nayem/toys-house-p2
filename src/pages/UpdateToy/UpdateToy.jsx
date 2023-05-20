@@ -3,8 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import InputGroup from "../Shared/InputGroup";
 import { server } from "../../main";
 import { toast } from "react-hot-toast";
+import useDynamicTitle from "../../utils/useDynamicTitle";
 
 const UpdateToy = () => {
+   useDynamicTitle("Update toy");
    const [toy, setToy] = useState(null);
    const { id } = useParams();
    const [updatedToy, setUpdateToy] = useState({
