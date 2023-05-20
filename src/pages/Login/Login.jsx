@@ -2,8 +2,9 @@ import React, { useContext, useState } from "react";
 import InputGroup from "../Shared/InputGroup";
 import googleLogo from "../../assets/logos/google.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
 import { AuthContext } from "../../provider/AuthProvider";
+import useDynamicTitle from "../../utils/useDynamicTitle";
+import Swal from "sweetalert2";
 
 const Login = () => {
    useDynamicTitle("Login");
@@ -42,7 +43,13 @@ const Login = () => {
       } else {
          loginCreatedUser(user.email, user.password)
             .then(() => {
-               toast.success(user.success);
+               Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: user.success,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
                navigate(fromRedirect);
                setUser({
                   ...user,
@@ -53,7 +60,13 @@ const Login = () => {
                });
             })
             .catch((error) => {
-               toast.error(error.code.slice(5));
+               Swal.fire({
+                  position: "center",
+                  icon: "warning",
+                  title: error.code.slice(5),
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
             });
       }
    };
@@ -61,7 +74,13 @@ const Login = () => {
    const googleLogin = () => {
       loginWithGoogle()
          .then((result) => {
-            toast.success(user.success);
+            Swal.fire({
+               position: "top-end",
+               icon: "success",
+               title: user.success,
+               showConfirmButton: false,
+               timer: 1500,
+            });
             navigate(fromRedirect);
          })
          .catch((error) => {

@@ -57,7 +57,13 @@ const MyToys = () => {
                         "success"
                      );
                   } else {
-                     toast.error(data.error);
+                     Swal.fire({
+                        position: "center",
+                        icon: "warning",
+                        title: data.error,
+                        showConfirmButton: false,
+                        timer: 1500,
+                     });
                   }
                });
          }

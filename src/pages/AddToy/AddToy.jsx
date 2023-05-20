@@ -3,8 +3,8 @@ import { AuthContext } from "../../provider/AuthProvider";
 import InputGroup from "../Shared/InputGroup";
 import { MdError } from "react-icons/md";
 import { server } from "../../main";
-import { toast } from "react-hot-toast";
 import useDynamicTitle from "../../utils/useDynamicTitle";
+import Swal from "sweetalert2";
 
 const AddToy = () => {
    useDynamicTitle("Add new toy");
@@ -115,7 +115,13 @@ const AddToy = () => {
             .then((res) => res.json())
             .then((data) => {
                if (data.success) {
-                  toast.success(data.message);
+                  Swal.fire({
+                     position: "center",
+                     icon: "success",
+                     title: data.message,
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
                   setAddToy({
                      ...addToy,
                      name: "",
@@ -135,7 +141,13 @@ const AddToy = () => {
                      descriptionError: "",
                   });
                } else {
-                  toast.error(data.error);
+                  Swal.fire({
+                     position: "center",
+                     icon: "warning",
+                     title: data.error,
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
                }
             });
       }

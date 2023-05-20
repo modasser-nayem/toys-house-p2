@@ -9,7 +9,7 @@ import {
    updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
-import { toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 export const AuthContext = createContext();
 
@@ -23,11 +23,23 @@ const AuthProvider = ({ children }) => {
          .then((userCredentials) => {
             updateUserProfile(userCredentials.user, name, photo_url);
             logoutUser("");
-            toast.success("User Created Successfully");
+            Swal.fire({
+               position: "center",
+               icon: "success",
+               title: "User Created Successfully",
+               showConfirmButton: false,
+               timer: 1500,
+            });
             navigate("/login");
          })
          .catch((error) => {
-            toast.error(error.message.slice(22, 42));
+            Swal.fire({
+               position: "center",
+               icon: "warning",
+               title: error.message.slice(22, 42),
+               showConfirmButton: false,
+               timer: 1500,
+            });
          });
    };
 
@@ -51,7 +63,13 @@ const AuthProvider = ({ children }) => {
       signOut(auth)
          .then(() => {
             if (toastMessage) {
-               toast.success(toastMessage);
+               Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: toastMessage,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
             }
          })
          .catch((error) => {

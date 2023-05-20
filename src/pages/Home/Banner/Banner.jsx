@@ -17,29 +17,65 @@ class Banner extends Component {
       return (
          <div className="">
             <Slider {...settings}>
-               <div>
+               <div className="relative">
                   <img
                      src="https://cdn.shopify.com/s/files/1/0698/7730/1541/files/IDT-HEADER-550_MIXED-1_1944x.jpg?v=1683207797"
                      alt=""
                   />
+                  <div className="absolute flex items-center p-8 top-0 z-40 h-full">
+                     <h2 className="text-[5rem] font-bold text-white">
+                        Welcome
+                     </h2>
+                  </div>
                </div>
-               <div>
+               <div className="relative">
                   <img
                      src="https://cdn.shopify.com/s/files/1/0698/7730/1541/files/IDT-HEADER-550_TRANSFORMERS_1944x.jpg?v=1683207797"
                      alt=""
                   />
+                  <div className="absolute flex flex-col justify-center p-8 top-0 z-40 h-full">
+                     <p className="text-2xl text-white font-semibold">
+                        Transformer & Roll OUT!
+                     </p>
+                     <h2 className="text-[5rem] font-bold text-white py-3">
+                        Transformers
+                     </h2>
+                     <button className="outline-none rounded-md py-3 px-5 text-xl font-medium text-white border-2 border-white w-fit">
+                        Les's Go
+                     </button>
+                  </div>
                </div>
-               <div>
+               <div className="relative">
                   <img
                      src="https://cdn.shopify.com/s/files/1/0698/7730/1541/files/IDT-HEADER-550_SUPERHEROES_1944x.jpg?v=1683207795"
                      alt=""
                   />
+                  <div className="absolute flex flex-col justify-center p-8 top-0 z-40 h-full">
+                     <p className="text-2xl text-pink-800 font-semibold">
+                        SUPERHEROES Assemble!
+                     </p>
+                     <h2 className="text-[5rem] font-bold py-3">SUPERHEROES</h2>
+                     <button className="outline-none rounded-md py-3 px-5 text-xl font-medium text-pink-800 border-2 border-pink-800 w-fit">
+                        Les's Go
+                     </button>
+                  </div>
                </div>
-               <div>
+               <div className="relative">
                   <img
                      src="https://cdn.shopify.com/s/files/1/0698/7730/1541/files/IDT-HEADER-550_PREMIUM_1944x.jpg?v=1683207794"
                      alt=""
                   />
+                  <div className="absolute flex flex-col justify-center p-8 top-0 z-40 h-full">
+                     <p className="text-2xl text-white font-semibold">
+                        You Shall not pass
+                     </p>
+                     <h2 className="text-[5rem] font-bold text-white py-3">
+                        Premium Collectables
+                     </h2>
+                     <button className="outline-none rounded-md py-3 px-5 text-xl font-medium text-white border-2 border-white w-fit">
+                        Les's Go
+                     </button>
+                  </div>
                </div>
                <div>
                   <img

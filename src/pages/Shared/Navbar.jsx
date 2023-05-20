@@ -56,7 +56,7 @@ const Navbar = () => {
                </Link>
             </div>
             <div
-               className={`bg-blue-400 flex flex-col lg:flex-row items-center absolute lg:static -z-auto lg:-z-[-40] w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
+               className={`bg-white flex flex-col lg:flex-row items-center absolute lg:static -z-auto lg:-z-[-40] w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
                   isOpen
                      ? "bg-opacity-100 lg:bg-opacity-0 top-[11vh]"
                      : "-top-[700px]"
@@ -146,8 +146,8 @@ const Navbar = () => {
                            <NavLink
                               className={({ isActive }) =>
                                  isActive
-                                    ? "text-goldenrod tooltip tooltip-left"
-                                    : "tooltip tooltip-left"
+                                    ? "text-goldenrod tooltip tooltip-left mt-5 lg:mt-0"
+                                    : "tooltip tooltip-left mt-5 lg:mt-0"
                               }
                               data-tip="Login"
                               to="/login"

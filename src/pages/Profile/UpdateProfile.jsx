@@ -2,10 +2,10 @@ import React from "react";
 import { useContext } from "react";
 import InputGroup from "../Shared/InputGroup";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
 import { useState } from "react";
 import useDynamicTitle from "../../utils/useDynamicTitle";
 import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const UpdateProfile = () => {
    useDynamicTitle("Update Profile");
@@ -43,7 +43,13 @@ const UpdateProfile = () => {
       } else {
          updateUserProfile(user, updateUser.displayName, updateUser.photoURL)
             .then(() => {
-               toast.success(updateUser.success);
+               Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: updateUser.success,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
                setUpdateUser({
                   ...updateUser,
                   displayName: "",
@@ -54,7 +60,13 @@ const UpdateProfile = () => {
                navigate("/profile");
             })
             .catch((error) => {
-               toast.error(error.code.slice(5));
+               Swal.fire({
+                  position: "center",
+                  icon: "warning",
+                  title: error.code.slice(5),
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
             });
       }
    };

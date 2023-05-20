@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import InputGroup from "../Shared/InputGroup";
 import { server } from "../../main";
-import { toast } from "react-hot-toast";
 import useDynamicTitle from "../../utils/useDynamicTitle";
+import Swal from "sweetalert2";
 
 const UpdateToy = () => {
    useDynamicTitle("Update toy");
@@ -75,7 +75,13 @@ const UpdateToy = () => {
             .then((res) => res.json())
             .then((data) => {
                if (data.success) {
-                  toast.success(data.message);
+                  Swal.fire({
+                     position: "center",
+                     icon: "success",
+                     title: data.message,
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
                   setUpdateToy({
                      ...updatedToy,
                      priceError: "",
@@ -84,7 +90,13 @@ const UpdateToy = () => {
                   });
                   navigate(`/my-toys`);
                } else {
-                  toast.error(data.error);
+                  Swal.fire({
+                     position: "center",
+                     icon: "warning",
+                     title: data.error,
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
                }
             });
       }
@@ -129,6 +141,12 @@ const UpdateToy = () => {
                )}
             </div>
             <div className="text-end">
+               <Link
+                  className="btn mr-5"
+                  to="/my-toys"
+               >
+                  Cancel
+               </Link>
                <button
                   type="submit"
                   className="cs-btn"

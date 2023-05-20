@@ -2,10 +2,10 @@ import React from "react";
 import logo from "../../assets/logos/logo.png";
 import {
    FaFacebookF,
+   FaGithub,
    FaGlobe,
    FaPhone,
    FaTwitter,
-   FaYoutube,
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
@@ -42,13 +42,13 @@ const Footer = () => {
             <div>
                <span className="footer-title">Social</span>
                <div className="grid grid-flow-col gap-4 text-4xl text-white">
-                  <a>
+                  <a href="https://github.com/modasser-nayem">
+                     <FaGithub />
+                  </a>
+                  <a href="https://github.com/modasser-nayem">
                      <FaTwitter />
                   </a>
-                  <a>
-                     <FaYoutube />
-                  </a>
-                  <a>
+                  <a href="https://web.facebook.com/alimodassernayem">
                      <FaFacebookF />
                   </a>
                </div>
