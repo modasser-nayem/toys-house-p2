@@ -32,12 +32,12 @@ This project is create for Child's Toy's. This project create by action figure t
 ## Acknowledgments
 
 -  [Daisy Ui]
--  [react-slick]
--  [slick-carousel]
--  [react-tabs]
--  [sweetalert2]
--  [react-rating-stars-component]
--  [react-icons]
+-  [react slick]
+-  [slick carousel]
+-  [react tabs]
+-  [sweetalert2 ]
+-  [react rating-stars-component]
+-  [react icons]
 
 <!-- CONTACT -->
 
