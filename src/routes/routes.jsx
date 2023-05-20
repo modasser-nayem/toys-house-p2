@@ -11,6 +11,8 @@ import Blog from "../pages/Blog/Blog";
 import Error from "../pages/Error/Error";
 import ToyDetails from "../pages/ToyDetails/ToyDetails";
 import PrivateRoute from "./PrivateRouter";
+import UpdateProfile from "../pages/Profile/UpdateProfile";
+import Profile from "../pages/Profile/Profile";
 
 export const router = createBrowserRouter([
    {
@@ -54,7 +56,6 @@ export const router = createBrowserRouter([
             path: "/update-toy/:id",
             element: (
                <PrivateRoute>
-                  {" "}
                   <UpdateToy />
                </PrivateRoute>
             ),
@@ -70,6 +71,22 @@ export const router = createBrowserRouter([
          {
             path: "/login",
             element: <Login />,
+         },
+         {
+            path: "/profile",
+            element: (
+               <PrivateRoute>
+                  <Profile />
+               </PrivateRoute>
+            ),
+         },
+         {
+            path: "/update-profile",
+            element: (
+               <PrivateRoute>
+                  <UpdateProfile />
+               </PrivateRoute>
+            ),
          },
       ],
    },
