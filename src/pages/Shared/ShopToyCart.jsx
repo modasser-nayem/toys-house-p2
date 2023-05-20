@@ -1,14 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { FaEye, FaStarHalf } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ShopToyCart = ({ toy }) => {
    const navigate = useNavigate();
    const { _id, name, picture, price, rating } = toy;
    const { user } = useContext(AuthContext);
+
+   useEffect(() => {
+      AOS.init({
+         duration: 2000,
+      });
+      AOS.refresh();
+   }, []);
 
    const handleClick = () => {
       Swal.fire({
@@ -26,7 +35,10 @@ const ShopToyCart = ({ toy }) => {
       });
    };
    return (
-      <div className="rounded-md border-2 hover:border-none hover:shadow-2xl p-5">
+      <div
+         data-aos="zoom-in"
+         className="rounded-md border-2 hover:border-none hover:shadow-2xl p-5"
+      >
          <img
             className="w-full max-h-[300px]"
             src={picture}

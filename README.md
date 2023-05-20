@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-# Toy House ![product-logo](/public/logo.png)
+# Toys House ![product-logo](/public/logo.png)
 
 ### Live Demo: [https://toys-house1.web.app/](https://toys-house1.web.app/)
 
@@ -31,13 +31,14 @@ This project is create for Child's Toy's. This project create by action figure t
 
 ## Acknowledgments
 
--  [Daisy Ui]
--  [react slick]
--  [slick carousel]
--  [react tabs]
--  [sweetalert2 ]
--  [react rating-stars-component]
--  [react icons]
+-  Daisy Ui
+-  slick-carousel
+-  react-slick
+-  react-tabs
+-  sweetalert2
+-  react-rating-stars-component
+-  react-icons
+-  aos
 
 <!-- CONTACT -->
 
