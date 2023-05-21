@@ -41,7 +41,7 @@ const Footer = () => {
             </div>
             <div>
                <span className="footer-title">Social</span>
-               <div className="grid grid-flow-col gap-4 text-4xl text-white">
+               <div className="grid grid-flow-col gap-4 text-3xl text-white">
                   <a href="https://github.com/modasser-nayem">
                      <FaGithub />
                   </a>

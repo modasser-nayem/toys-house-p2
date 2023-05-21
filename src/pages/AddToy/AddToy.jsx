@@ -5,6 +5,7 @@ import { MdError } from "react-icons/md";
 import { server } from "../../main";
 import useDynamicTitle from "../../utils/useDynamicTitle";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AddToy = () => {
    useDynamicTitle("Add new toy");
@@ -18,8 +19,7 @@ const AddToy = () => {
       quantity: "",
       seller_name: user.displayName,
       seller_email: user.email,
-      description:
-         "Unleash the power of the Hulk with this action figure. Featuring incredible strength and rage, the Hulk is ready to join your Avengers collection. With its massive size and impressive detailing, this figure is perfect for display or engaging in action-packed play",
+      description: "",
       nameError: "",
       pictureError: "",
       priceError: "",
@@ -266,6 +266,12 @@ const AddToy = () => {
                )}
             </div>
             <div className="text-end">
+               <Link
+                  className="btn mr-5"
+                  to="/my-toys"
+               >
+                  Cancel
+               </Link>
                <button
                   type="submit"
                   className="cs-btn"

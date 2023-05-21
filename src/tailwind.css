@@ -4,7 +4,7 @@
 
 @layer components {
    .cs-container {
-      @apply max-w-[1380px] p-8 xl:p-1 mx-auto;
+      @apply xl:w-[1100px] px-5 xl:px-1 mx-auto;
    }
    .cs-title {
       @apply text-[40px] text-center font-medium font-Lato  border-b-[5px] border-goldenrod w-fit mx-auto;

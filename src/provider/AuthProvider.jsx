@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
             Swal.fire({
                position: "center",
                icon: "success",
-               title: "User Created Successfully",
+               title: "Registration Successfully",
                showConfirmButton: false,
                timer: 1500,
             });

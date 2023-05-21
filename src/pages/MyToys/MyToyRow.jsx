@@ -18,7 +18,10 @@ const MyToyRow = ({ toy, deleteToy }) => {
                   />
                </div>
                <div className="font-medium text-gray-800">
-                  <h2 className="text-lg pt-1">{name}</h2>
+                  <h2 className="text-lg pt-1">
+                     {name.slice(0, 40)}
+                     {name.length > 40 ? "..." : ""}
+                  </h2>
                   <p>
                      Category: <span className="text-blue-400">{category}</span>
                   </p>

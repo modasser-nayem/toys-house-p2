@@ -10,10 +10,7 @@ const Profile = () => {
    const { photoURL, displayName, email, metadata } = user;
    const { creationTime, lastSignInTime } = metadata;
    return (
-      <div
-         id="services"
-         className="py-24"
-      >
+      <div className="py-24">
          <LazyLoad threshold={0.95}>
             <img
                className="w-52 h-52 rounded-full mx-auto"
@@ -39,7 +36,7 @@ const Profile = () => {
             <div className="w-fit mx-auto mt-8">
                <Link
                   to="/update-profile"
-                  className="cs-btn"
+                  className="cs-btn block w-fit"
                >
                   Edit Profile
                </Link>

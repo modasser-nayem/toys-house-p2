@@ -62,7 +62,7 @@ const Navbar = () => {
                      : "-top-[700px]"
                }`}
             >
-               <div className="text-lg font-medium text-black font-Lato flex flex-col lg:flex-row items-center gap-8 lg:mr-7 mb-7 md:mb-0">
+               <div className="font-medium text-black font-Lato flex flex-col lg:flex-row items-center gap-8 lg:mr-7 mb-7 md:mb-0">
                   {navLink.map((nav, i) => {
                      if (!user) {
                         if (!nav.private) {
@@ -105,7 +105,7 @@ const Navbar = () => {
                                  tabIndex={0}
                                  className="btn btn-ghost btn-circle avatar"
                               >
-                                 <div className="w-12 bg-gray-400 rounded-full">
+                                 <div className="w-10 bg-gray-400 rounded-full">
                                     <LazyLoad threshold={0.95}>
                                        <img src={user.photoURL} />
                                     </LazyLoad>
@@ -134,7 +134,9 @@ const Navbar = () => {
                                  </li>
                                  <li>
                                     <p
-                                       onClick={() => logoutUser("Logout User")}
+                                       onClick={() =>
+                                          logoutUser("Logout Success")
+                                       }
                                        className="text-lg"
                                     >
                                        <MdLogout /> Logout

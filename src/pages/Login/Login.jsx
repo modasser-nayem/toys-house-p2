@@ -18,7 +18,7 @@ const Login = () => {
       password: "",
       emailError: "",
       passwordError: "",
-      success: "User Successfully Login",
+      success: "Successfully Login",
    });
 
    const changeHandler = (e) => {
@@ -75,7 +75,7 @@ const Login = () => {
       loginWithGoogle()
          .then((result) => {
             Swal.fire({
-               position: "top-end",
+               position: "center",
                icon: "success",
                title: user.success,
                showConfirmButton: false,
@@ -110,16 +110,18 @@ const Login = () => {
                changeHandler={changeHandler}
                error={user.passwordError}
             />
-            <div className="text-xl relative font-medium mb-5">
-               <input
-                  onClick={() => setIsAgree(!isAgree)}
-                  type="checkbox"
-                  id="vehicle1"
-                  name="vehicle1"
-                  value="Bike"
-               />
-               <label htmlFor="vehicle1"> Remember Me</label>
-               <span className="text-lg absolute right-10 font-normal">
+            <div className="text-xl flex flex-col md:flex-row gap-5 justify-between font-medium mb-5">
+               <div>
+                  <input
+                     onClick={() => setIsAgree(!isAgree)}
+                     type="checkbox"
+                     id="vehicle1"
+                     name="vehicle1"
+                     value="Bike"
+                  />
+                  <label htmlFor="vehicle1"> Remember Me</label>
+               </div>
+               <span className="text-lg font-normal">
                   Dont't have an Account,
                   <Link
                      to="/register"

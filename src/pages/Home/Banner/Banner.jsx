@@ -23,7 +23,7 @@ class Banner extends Component {
                      alt=""
                   />
                   <div className="absolute flex items-center p-8 top-0 z-40 h-full">
-                     <h2 className="text-2xl md:text-4xl lg:text-[5em] font-bold text-white">
+                     <h2 className="text-2xl md:text-4xl lg:text-[4em] font-bold text-white">
                         Welcome
                      </h2>
                   </div>
@@ -37,10 +37,10 @@ class Banner extends Component {
                      <p className="md:text-xl lg:text-2xl text-white font-semibold">
                         Transformer & Roll OUT!
                      </p>
-                     <h2 className="text-2xl md:text-4xl lg:text-[5em] font-bold text-white py-3">
+                     <h2 className="text-2xl md:text-4xl lg:text-[4em] font-bold text-white lg:py-3">
                         Transformers
                      </h2>
-                     <button className="outline-none rounded-md  py-1.5 px-3 lg:py-3 md:px-5 lg:text-xl font-medium text-white border-2 border-white w-fit">
+                     <button className="outline-none rounded-md  py-1 px-3 lg:py-2 md:px-5 lg:text-xl font-medium text-white border-2 border-white w-fit lg:mt-3">
                         Les's Go
                      </button>
                   </div>
@@ -54,10 +54,10 @@ class Banner extends Component {
                      <p className="md:text-xl lg:text-2xl text-pink-800 font-semibold">
                         SUPERHEROES Assemble!
                      </p>
-                     <h2 className="text-2xl md:text-4xl lg:text-[5em] font-bold py-3">
+                     <h2 className="text-2xl md:text-4xl lg:text-[4em] font-bold lg:py-3">
                         SUPERHEROES
                      </h2>
-                     <button className="outline-none rounded-md  py-1.5 px-3 lg:py-3 md:px-5 lg:text-xl font-medium text-pink-800 border-2 border-pink-800 w-fit">
+                     <button className="outline-none rounded-md  py-1 px-3 lg:py-2 md:px-5 lg:text-xl font-medium text-pink-800 border-2 border-pink-800 w-fit lg:mt-3">
                         Les's Go
                      </button>
                   </div>
@@ -71,10 +71,10 @@ class Banner extends Component {
                      <p className="md:text-xl lg:text-2xl text-white font-semibold">
                         You Shall not pass
                      </p>
-                     <h2 className="text-2xl md:text-4xl lg:text-[5em] font-bold text-white py-3">
+                     <h2 className="text-2xl md:text-4xl lg:text-[4em] font-bold text-white lg:py-3">
                         Premium Collectables
                      </h2>
-                     <button className="outline-none rounded-md  py-1.5 px-3 lg:py-3 md:px-5 lg:text-xl font-medium text-white border-2 border-white w-fit">
+                     <button className="outline-none rounded-md  py-1 px-3 lg:py-2 md:px-5 lg:text-xl font-medium text-white border-2 border-white w-fit lg:mt-3">
                         Les's Go
                      </button>
                   </div>
