@@ -67,7 +67,11 @@ async function run() {
                .find({}, options)
                .limit(20)
                .toArray();
-            res.send(result);
+            if (result.length !== 0) {
+               return res.send(result);
+            } else {
+               return res.send([]);
+            }
          } else {
             const result = await toysCollection
                .find(
@@ -80,14 +84,18 @@ async function run() {
                )
                .limit(20)
                .toArray();
-            res.send(result);
+            if (result) {
+               return res.send(result);
+            } else {
+               return res.send([]);
+            }
          }
       });
 
       // popular toys
       app.get("/popular-toys", async (req, res) => {
          const query = {
-            rating: { $gt: 4.5 },
+            rating: { $gt: 4.6 },
          };
          const options = {
             projection: {
@@ -103,7 +111,11 @@ async function run() {
             .find(query, options)
             .limit(4)
             .toArray();
-         res.send(result);
+         if (result.length !== 0) {
+            return res.send(result);
+         } else {
+            return res.send([]);
+         }
       });
 
       // category to find data
@@ -116,7 +128,11 @@ async function run() {
          const result = await toysCollection
             .find(databaseQuery, options)
             .toArray();
-         res.send(result);
+         if (result.length !== 0) {
+            return res.send(result);
+         } else {
+            return res.send([]);
+         }
       });
 
       // my toys
@@ -145,7 +161,7 @@ async function run() {
             if (result.length !== 0) {
                return res.send(result);
             } else {
-               return res.send(null);
+               return res.send([]);
             }
          } else {
             res.status(400).send({
